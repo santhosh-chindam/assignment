@@ -7,4 +7,9 @@ resource "helm_release" "currency_converter" {
   values = [
     file("../helm/currency-converter/values.yaml")
   ]
+
+  depends_on = [
+    aws_eks_node_group.main,
+    aws_eks_cluster.main
+  ]
 }
