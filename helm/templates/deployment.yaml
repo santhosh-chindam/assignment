@@ -22,8 +22,5 @@ spec:
             - containerPort: 8000
           env:
             - name: EXCHANGE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "currency-converter.fullname" . }}-secret
-                  key: EXCHANGE_API_KEY
+              value: "{{ .Values.EXCHANGE_API_KEY }}"
           resources: {{ toYaml .Values.resources | nindent 12 }}
