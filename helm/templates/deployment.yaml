@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "currency-converter.fullname" . }}
+  labels:
+    app: {{ include "currency-converter.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "currency-converter.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "currency-converter.name" . }}
+    spec:
+      containers:
+        - name: currency-converter
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: EXCHANGE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "currency-converter.fullname" . }}-secret
+                  key: EXCHANGE_API_KEY
+          resources: {{ toYaml .Values.resources | nindent 12 }}
