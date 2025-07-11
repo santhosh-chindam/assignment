@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: yourdockerhubusername/currency-converter
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+env:
+  EXCHANGE_API_KEY: "ee33858a8b121416d9d5918d96267b98"
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
