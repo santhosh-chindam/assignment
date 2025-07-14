@@ -64,18 +64,4 @@ Push to main branch
 OR create a pull request against main
 
 You can monitor progress via the Actions tab in GitHub.
-
-
-├── dockerfile                  # Container setup (alpine, non-root)
-├── app/                        # FastAPI service + frontend
-│   └── main.py
-├── helm/
-│   └── currency-converter/    
-├── terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   └── outputs.tf
-├── .github/
-│   └── workflows/
-│       └── pipeline.yml       # CI/CD pipeline file
-└── README.md                 
+        
